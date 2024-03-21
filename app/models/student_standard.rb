@@ -5,4 +5,5 @@ class StudentStandard < ApplicationRecord
   has_many :student_activities, dependent: :destroy
 
   scope :completed_by_teacher, StudentStandards::CompletedByTeacher
+  scope :average_growth_by_teacher, StudentStandards::AverageGrowthByTeacher
 end
