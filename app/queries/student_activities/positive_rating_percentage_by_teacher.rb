@@ -2,21 +2,22 @@
 
 module StudentActivities
   class PositiveRatingPercentageByTeacher < ::ApplicationQuery
-    attr_reader :teacher
+    attr_reader :teacher, :scope
 
-    def initialize(teacher:)
+    def initialize(teacher:, scope: StudentActivity)
       @teacher = teacher
+      @scope = scope
     end
 
     def call
-      rated_positively = teacher
-        .student_activities
+      rated_positively = scope
+        .by_teacher(teacher:)
         .where(rated_positively: true)
         .count
         .to_f
 
-      student_activities_count = teacher
-        .student_activities
+      student_activities_count = scope
+        .by_teacher(teacher:)
         .count
         .to_f
 
