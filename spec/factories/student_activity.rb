@@ -3,5 +3,6 @@
 FactoryBot.define do
   factory :student_activity do
     student_standard
+    activity
   end
 end

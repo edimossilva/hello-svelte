@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_21_080627) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_21_140620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "devise_api_tokens", force: :cascade do |t|
     t.string "resource_owner_type", null: false
@@ -37,6 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_21_080627) do
     t.bigint "student_standard_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "activity_id"
+    t.index ["activity_id"], name: "index_student_activities_on_activity_id"
     t.index ["student_standard_id"], name: "index_student_activities_on_student_standard_id"
   end
 
