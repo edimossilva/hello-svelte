@@ -10,4 +10,5 @@ class User < ApplicationRecord
     :omniauthable, omniauth_providers: %i[github strava]
 
   validates :email, uniqueness: { case_sensitive: false }
+  has_one :teacher, dependent: :destroy
 end
